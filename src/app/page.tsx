@@ -32,15 +32,20 @@ async function getData() {
   }
 }
 
+interface User {
+  ID: number;
+  name: string;
+  email: string;
+  password: string;
+};
  
 export default async function Page() {
   const data = await getData();
   
- 
   return (
     <main>
       <h1>users</h1>
-      {data.map((user: object) => (
+      {data.map((user: User) => (
         <div key={user.ID}>
           <h2>{user.name}</h2>
           <p>{user.email}</p>
