@@ -10,7 +10,11 @@ async function getData() {
     }
   `;
 
-  const res = await fetch('http://localhost:8080/query', {
+  if (!process.env.NEXT_PUBLIC_API_ENDPOINT) {
+    throw new Error('API_ENDPOINT is not defined');
+  }
+
+  const res = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
